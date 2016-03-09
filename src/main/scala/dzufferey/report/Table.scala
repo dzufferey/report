@@ -32,7 +32,7 @@ class Table(title: String, headers: => Iterable[String], rows: => Iterable[Itera
       printCell(0, i)
     }
     writer.newLine
-    for (_ <- 0 until widths.reduceLeft(_ + _) + widths.size - 1) {
+    for (_ <- 0 until widths.sum + widths.size - 1) {
       writer.write('-')
     }
     writer.write('|')

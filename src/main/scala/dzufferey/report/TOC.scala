@@ -17,7 +17,7 @@ class TocEntry(val item: Item, val children: Seq[TocEntry]) {
   lazy val number = pathToRoot.reverse.mkString("",".","")
   
   def toText(writer: java.io.BufferedWriter) {
-    sys.error("TODO")
+    ???
   }
   
   def toHtml(writer: java.io.BufferedWriter) {
@@ -56,7 +56,7 @@ class TOC(report: Report) {
   entries.setPath(Nil)
   
   def toText(writer: java.io.BufferedWriter) {
-    sys.error("TODO")
+    ???
   }
 
   def toHtml(writer: java.io.BufferedWriter) {

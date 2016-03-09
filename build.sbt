@@ -4,9 +4,11 @@ organization := "io.github.dzufferey"
 
 version := "0.1-SNAPSHOT"
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.8"
 
-libraryDependencies += "org.apache.commons" % "commons-lang3" % "3.2.1"
+libraryDependencies += "org.apache.commons" % "commons-lang3" % "3.4"
+
+addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.13")
 
 publishMavenStyle := true
 
