@@ -17,7 +17,12 @@ class TocEntry(val item: Item, val children: Seq[TocEntry]) {
   lazy val number = pathToRoot.reverse.mkString("",".","")
   
   def toText(writer: java.io.BufferedWriter) {
-    ???
+    val n = pathToRoot.length
+    (0 until n).foreach(_ => writer.write("  "))
+    writer.write(number)
+    writer.write(" ")
+    writer.write(item.title)
+    writer.newLine
   }
   
   def toHtml(writer: java.io.BufferedWriter) {
@@ -56,7 +61,12 @@ class TOC(report: Report) {
   entries.setPath(Nil)
   
   def toText(writer: java.io.BufferedWriter) {
-    ???
+    writer.write("Table of Contents");
+    writer.newLine
+    writer.write("-----------------");
+    writer.newLine
+    entries.toHtml(writer)
+    writer.newLine
   }
 
   def toHtml(writer: java.io.BufferedWriter) {
