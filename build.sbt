@@ -4,13 +4,15 @@ organization := "io.github.dzufferey"
 
 version := "0.1-SNAPSHOT"
 
-scalaVersion := "2.12.6"
+scalaVersion := "2.13.1"
 
-crossScalaVersions := Seq("2.11.11", "2.12.6")
+crossScalaVersions := Seq("2.12.10", "2.13.1")
 
-libraryDependencies += "org.apache.commons" % "commons-lang3" % "3.7"
+libraryDependencies += "org.apache.commons" % "commons-lang3" % "3.9"
 
-addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.17")
+scalacOptions := Seq("-unchecked", "-deprecation")
+
+//addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.17")
 
 publishMavenStyle := true
 

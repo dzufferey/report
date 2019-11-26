@@ -4,7 +4,7 @@ class Table(title: String, headers: => Iterable[String], rows: => Iterable[Itera
 
   var tbl: Array[Array[String]] = null
 
-  protected def mkTbl {
+  protected def mkTbl: Unit =  {
     if (tbl == null) {
       tbl = Array(headers.toArray) ++ rows.map(_.toArray)
       val width = tbl(0).size
@@ -14,14 +14,14 @@ class Table(title: String, headers: => Iterable[String], rows: => Iterable[Itera
     }
   }
 
-  def toText(writer: java.io.BufferedWriter) {
+  def toText(writer: java.io.BufferedWriter): Unit =  {
     mkTbl
     val widths = Array.ofDim[Int](tbl(0).size)
     for (i <- 0 until tbl.size;
          j <- 0 until tbl(i).size) {
        widths(j) = math.max(widths(j), tbl(i)(j).length)
     }
-    def printCell(i: Int, j: Int) {
+    def printCell(i: Int, j: Int): Unit = {
       val content = tbl(i)(j)
       val fill = widths(j) - content.size
       writer.write(content)
@@ -45,7 +45,7 @@ class Table(title: String, headers: => Iterable[String], rows: => Iterable[Itera
     }
   }
 
-  def toHtmlInner(writer: java.io.BufferedWriter) = {
+  def toHtmlInner(writer: java.io.BufferedWriter): Unit = {
     mkTbl
     writer.write("<table>"); writer.newLine
     writer.write("  <tr>"); writer.newLine

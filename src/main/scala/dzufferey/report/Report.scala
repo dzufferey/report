@@ -4,7 +4,7 @@ import java.io.{BufferedWriter, PrintWriter, OutputStreamWriter, FileOutputStrea
 
 class Report(title: String, style: String = Style.CSS) extends Sequence(title) {
 
-  def htmlHeader(writer: BufferedWriter) {
+  def htmlHeader(writer: BufferedWriter): Unit = {
     writer.write("<!DOCTYPE HTML>"); writer.newLine
     writer.write("<html>"); writer.newLine
     writer.write("<head>"); writer.newLine
@@ -16,31 +16,31 @@ class Report(title: String, style: String = Style.CSS) extends Sequence(title) {
     writer.write("<body>"); writer.newLine
   }
 
-  def htmlFooter(writer: BufferedWriter) {
+  def htmlFooter(writer: BufferedWriter): Unit = {
     writer.write("</body>"); writer.newLine
     writer.write("</html>"); writer.newLine
   }
 
   
-  def makeConsoleReport {
+  def makeConsoleReport: Unit = {
     val writer = new BufferedWriter(new PrintWriter(Console.out))
     toText(writer)
     writer.flush
   }
 
-  override def toHtml(writer: BufferedWriter) {
+  override def toHtml(writer: BufferedWriter): Unit = {
     printHtmlTitle(writer)
     toc.toHtml(writer)
     toHtmlInner(writer)
   }
 
-  override def toHtmlInner(writer: BufferedWriter) {
+  override def toHtmlInner(writer: BufferedWriter): Unit = {
     for (c <- children) {
       c.toHtml(writer)
     }
   }
   
-  def makeHtmlReport(fileName: String) = {
+  def makeHtmlReport(fileName: String): Unit = {
     val fileOut = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName)))
     val toc = new TOC(this)
     htmlHeader(fileOut)

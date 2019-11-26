@@ -8,7 +8,7 @@ class TocEntry(val item: Item, val children: Seq[TocEntry]) {
   item.setToc(this)
 
   private var pathToRoot: Seq[Int] = Nil
-  def setPath(toHere: Seq[Int]) {
+  def setPath(toHere: Seq[Int]): Unit = {
     pathToRoot = toHere
     children.zipWithIndex.foreach{ case (c, i) => c.setPath(i +: toHere) }
   }
@@ -16,7 +16,7 @@ class TocEntry(val item: Item, val children: Seq[TocEntry]) {
   lazy val ref = pathToRoot.reverse.mkString("Ref_","_","")
   lazy val number = pathToRoot.reverse.mkString("",".","")
   
-  def toText(writer: java.io.BufferedWriter) {
+  def toText(writer: java.io.BufferedWriter): Unit =  {
     val n = pathToRoot.length
     (0 until n).foreach(_ => writer.write("  "))
     writer.write(number)
@@ -25,7 +25,7 @@ class TocEntry(val item: Item, val children: Seq[TocEntry]) {
     writer.newLine
   }
   
-  def toHtml(writer: java.io.BufferedWriter) {
+  def toHtml(writer: java.io.BufferedWriter): Unit = {
     writer.write("<li>")
     val escapedTitle = org.apache.commons.lang3.StringEscapeUtils.escapeHtml4(item.title)
     //writer.write("<a href=\"#"+ref+"\"> <span>"+number+"</span> <span>"+escapedTitle+"</span> </a>")
@@ -60,7 +60,7 @@ class TOC(report: Report) {
   val entries = new TocEntry(report)
   entries.setPath(Nil)
   
-  def toText(writer: java.io.BufferedWriter) {
+  def toText(writer: java.io.BufferedWriter): Unit =  {
     writer.write("Table of Contents");
     writer.newLine
     writer.write("-----------------");
@@ -69,7 +69,7 @@ class TOC(report: Report) {
     writer.newLine
   }
 
-  def toHtml(writer: java.io.BufferedWriter) {
+  def toHtml(writer: java.io.BufferedWriter): Unit =  {
     writer.write("<div id=\"toc\" class=\"toc\">"); writer.newLine
     writer.write("<div id=\"toctitle\" class=\"toctitle\">Contents</div>"); writer.newLine
     writer.write("<ul>"); writer.newLine
