@@ -9,7 +9,7 @@ class Report(title: String, style: String = Style.CSS) extends Sequence(title) {
     writer.write("<html>"); writer.newLine
     writer.write("<head>"); writer.newLine
     writer.write("    <meta charset=\"utf-8\">"); writer.newLine
-    val escapedTitle = org.apache.commons.lang3.StringEscapeUtils.escapeHtml4(title)
+    val escapedTitle = org.apache.commons.text.StringEscapeUtils.escapeHtml4(title)
     writer.write("    <title>"+escapedTitle+"</title>"); writer.newLine
     writer.write(style); writer.newLine
     writer.write("</head>"); writer.newLine
